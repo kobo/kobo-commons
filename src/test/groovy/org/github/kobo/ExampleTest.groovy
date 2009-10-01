@@ -2,7 +2,7 @@
 // Generated from archetype; please customize.
 //
 
-package com.github.kobo
+package org.jggug.kobo
 
 import groovy.util.GroovyTestCase
 

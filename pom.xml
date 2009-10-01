@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.kobo</groupId>
+    <groupId>org.jggug.kobo</groupId>
     <artifactId>kobo-commons</artifactId>
     <name>Example Project</name>
     <version>1.0-SNAPSHOT</version>
