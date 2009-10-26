@@ -12,9 +12,10 @@ class EquivWithVariousTypesTest extends GroovyTestCase {
         @Equiv List list = ['default', "‚ ‚¢‚¤‚¦‚¨"]
         @Equiv Set set = ['default', "‚ ‚¢‚¤‚¦‚¨"] as Set
         @Equiv Object object = OBJECT
+        @Equiv def variable = OBJECT
     }
 
-    def s0, s1, s2, s3, s4, s5, s6, s7
+    def s0, s1, s2, s3, s4, s5, s6, s7, s8
 
     void setUp() {
         s0 = new Sample()
@@ -25,6 +26,7 @@ class EquivWithVariousTypesTest extends GroovyTestCase {
         s5 = new Sample(list:['MODIFIED'])
         s6 = new Sample(set:['MODIFIED'] as Set)
         s7 = new Sample(object:new Object())
+        s8 = new Sample(object:new Object())
     }
 
     void testEqualsSameObject() throws Exception {
@@ -74,6 +76,12 @@ class EquivWithVariousTypesTest extends GroovyTestCase {
         assert !s7.equals(s1)
     }
 
+    void testEqualsDifferentVariable() throws Exception {
+        assert s1 != s8
+        assert !s1.equals(s8)
+        assert !s8.equals(s1)
+    }
+
     void testHashCode() throws Exception {
         assert s1.hashCode() == s0.hashCode()
         assert s1.hashCode() == s1.hashCode()
@@ -84,5 +92,6 @@ class EquivWithVariousTypesTest extends GroovyTestCase {
         assert s1.hashCode() != s5.hashCode()
         assert s1.hashCode() != s6.hashCode()
         assert s1.hashCode() != s7.hashCode()
+        assert s1.hashCode() != s8.hashCode()
     }
 }
