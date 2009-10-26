@@ -2,7 +2,7 @@ package org.jggug.kobo.commons.lang
 
 import org.jggug.kobo.commons.lang.Equiv
 
-class EquivForNestedClassTest extends GroovyTestCase {
+class EquivWithNestedClassTest extends GroovyTestCase {
 
     static class A {
         static class B {
