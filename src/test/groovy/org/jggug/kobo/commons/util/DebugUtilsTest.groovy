@@ -2,7 +2,7 @@ package org.jggug.kobo.commons.lang
 
 import org.jggug.kobo.commons.util.DebugUtils;
 
-class EquivTest extends GroovyTestCase {
+class DebugUtilsTest extends GroovyTestCase {
 
     void setUp() {
         DebugUtils.initialize();
