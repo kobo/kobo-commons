@@ -1,8 +1,24 @@
 usePlugin 'groovy'
 
-repositories { 
-    mavenCentral() 
-} 
-dependencies { 
+repositories {
+    mavenCentral()
+}
+dependencies {
     groovy group:'org.codehaus.groovy', name:'groovy', version:'1.7-beta-2'
+}
+
+def defaultEncoding = 'UTF-8'
+compileJava {
+    options.encoding = defaultEncoding
+}
+compileTestJava {
+    options.encoding = defaultEncoding
+}
+compileGroovy {
+    groovyOptions.encoding = defaultEncoding
+    options.encoding = defaultEncoding
+}
+compileTestGroovy {
+    groovyOptions.encoding = defaultEncoding
+    options.encoding = defaultEncoding
 }
