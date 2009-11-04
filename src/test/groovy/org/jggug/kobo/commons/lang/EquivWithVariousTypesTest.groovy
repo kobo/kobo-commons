@@ -8,9 +8,9 @@ class EquivWithVariousTypesTest extends GroovyTestCase {
         static Object OBJECT = new Object()
         @Equiv String string = "DEFAULT"
         @Equiv Integer integer = 1234
-        @Equiv Map map = [default:'DEFAULT', abc:'Ç†Ç¢Ç§Ç¶Ç®']
-        @Equiv List list = ['default', "Ç†Ç¢Ç§Ç¶Ç®"]
-        @Equiv Set set = ['default', "Ç†Ç¢Ç§Ç¶Ç®"] as Set
+        @Equiv Map map = [default:'DEFAULT', abc:'„ÅÇ„ÅÑ„ÅÜ„Åà„Åä']
+        @Equiv List list = ['default', "„ÅÇ„ÅÑ„ÅÜ„Åà„Åä"]
+        @Equiv Set set = ['default', "„ÅÇ„ÅÑ„ÅÜ„Åà„Åä"] as Set
         @Equiv Object object = OBJECT
         @Equiv def variable = OBJECT
     }
