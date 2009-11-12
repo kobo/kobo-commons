@@ -1,4 +1,5 @@
 usePlugin 'groovy'
+usePlugin 'maven'
 
 repositories {
     mavenCentral()
@@ -21,4 +22,10 @@ compileGroovy {
 compileTestGroovy {
     groovyOptions.encoding = defaultEncoding
     options.encoding = defaultEncoding
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository url:"file://localhost/tmp/myRepo/"
+    }
 }
