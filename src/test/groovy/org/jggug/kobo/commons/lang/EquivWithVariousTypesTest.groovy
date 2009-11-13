@@ -1,7 +1,5 @@
 package org.jggug.kobo.commons.lang
 
-import org.jggug.kobo.commons.lang.Equiv
-
 class EquivWithVariousTypesTest extends GroovyTestCase {
 
     static class Sample {
@@ -29,60 +27,60 @@ class EquivWithVariousTypesTest extends GroovyTestCase {
         s8 = new Sample(object:new Object())
     }
 
-    void testEqualsSameObject() throws Exception {
+    void testEqualsSameObject() {
         assert s1 == s1
         assert s1.equals(s1)
     }
 
-    void testEqualsSameProperties() throws Exception {
+    void testEqualsSameProperties() {
         assert s0 == s1
         assert s0.equals(s1)
         assert s1.equals(s0)
     }
 
-    void testEqualsDifferentString() throws Exception {
+    void testEqualsDifferentString() {
         assert s1 != s2
         assert !s1.equals(s2)
         assert !s2.equals(s1)
     }
 
-    void testEqualsDifferentInteger() throws Exception {
+    void testEqualsDifferentInteger() {
         assert s1 != s3
         assert !s1.equals(s3)
         assert !s3.equals(s1)
     }
 
-    void testEqualsDifferentMap() throws Exception {
+    void testEqualsDifferentMap() {
         assert s1 != s4
         assert !s1.equals(s4)
         assert !s4.equals(s1)
     }
 
-    void testEqualsDifferentList() throws Exception {
+    void testEqualsDifferentList() {
         assert s1 != s5
         assert !s1.equals(s5)
         assert !s5.equals(s1)
     }
 
-    void testEqualsDifferentSet() throws Exception {
+    void testEqualsDifferentSet() {
         assert s1 != s6
         assert !s1.equals(s6)
         assert !s6.equals(s1)
     }
 
-    void testEqualsDifferentObject() throws Exception {
+    void testEqualsDifferentObject() {
         assert s1 != s7
         assert !s1.equals(s7)
         assert !s7.equals(s1)
     }
 
-    void testEqualsDifferentVariable() throws Exception {
+    void testEqualsDifferentVariable() {
         assert s1 != s8
         assert !s1.equals(s8)
         assert !s8.equals(s1)
     }
 
-    void testHashCode() throws Exception {
+    void testHashCode() {
         assert s1.hashCode() == s0.hashCode()
         assert s1.hashCode() == s1.hashCode()
         assert s1.hashCode() != s2.hashCode()

@@ -1,7 +1,5 @@
 package org.jggug.kobo.commons.lang
 
-import org.jggug.kobo.commons.lang.Equiv
-
 class EquivTest extends GroovyTestCase {
 
     static class Sample {
@@ -27,30 +25,30 @@ class EquivTest extends GroovyTestCase {
         s4 = new Sample(name:'Mike', value:'Good', ignored:'Garbage')
     }
 
-    void testEqualsSameObject() throws Exception {
+    void testEqualsSameObject() {
         assert s1 == s1
         assert s1.equals(s1)
     }
 
-    void testEqualsDifferentIgnored() throws Exception {
+    void testEqualsDifferentIgnored() {
         assert s1 == s2
         assert s1.equals(s2)
         assert s2.equals(s1)
     }
 
-    void testEqualsDifferentValue() throws Exception {
+    void testEqualsDifferentValue() {
         assert s1 != s3
         assert !s1.equals(s3)
         assert !s3.equals(s1)
     }
 
-    void testEqualsDifferentName() throws Exception {
+    void testEqualsDifferentName() {
         assert s1 != s4
         assert !s1.equals(s4)
         assert !s4.equals(s1)
     }
 
-    void testHashCode() throws Exception {
+    void testHashCode() {
         assert s1.hashCode() == s1.hashCode()
         assert s1.hashCode() == s2.hashCode()
         assert s1.hashCode() != s3.hashCode()
