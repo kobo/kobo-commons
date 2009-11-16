@@ -11,11 +11,18 @@ class StringUtilsTest extends GroovyTestCase {
         assert StringUtils.tr("abcdefghijklmn", "", "") == "abcdefghijklmn"
     }
 
-    void testTr_Unmatch() {
-        try {
-            StringUtils.tr("abcdefghijklmn", "ace", "ACEX")
-            fail()
-        } catch (IllegalArgumentException e) {
-        }
+    void testTr_Expand() {
+        assert StringUtils.tr("abcdefghijklmn", "a-n", "ABCDEFGHIJKLMN") == "ABCDEFGHIJKLMN"
+        assert StringUtils.tr("abcdefghijklmn", "abcdefghijklmn", "A-N") == "ABCDEFGHIJKLMN"
+        assert StringUtils.tr("abcdefghijklmn", "a-n", "A-N") == "ABCDEFGHIJKLMN"
+        assert StringUtils.tr("abcdefghijklmn", "a-c", "A-C") == "ABCdefghijklmn"
+        assert StringUtils.tr("abcdefghijklmn", "af-hn", "AF-HN") == "AbcdeFGHijklmN"
+        assert StringUtils.tr("abcdefghijklmn", "x-z", "X-Z") == "abcdefghijklmn"
+        assert StringUtils.tr("abcdefghijklmn", "a-cfj-l", "A-CFJ-L") == "ABCdeFghiJKLmn"
+        assert StringUtils.tr("-abc-", "-", "*") == "*abc*"
+        assert StringUtils.tr("-abcdef--ghijklmn-", "-cfj-l", "*CFJ-L") == "*abCdeF**ghiJKLmn*"
+        assert StringUtils.tr("abcdefghijklmn", "a-n", "A-C") == "ABCCCCCCCCCCCC"
+        assert StringUtils.tr("abcdefghijklmn", "a-c", "A-N") == "ABCdefghijklmn"
     }
+
 }

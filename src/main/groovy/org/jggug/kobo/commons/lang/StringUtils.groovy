@@ -2,20 +2,26 @@ package org.jggug.kobo.commons.lang
 
 class StringUtils {
 
-    static String tr(String self, String targets, String replacements) {
-        if (targets.size() != replacements.size()) {
-            throw new IllegalArgumentException('Unmatch size of targets and replacements')
-        }
-        return self.collect { original ->
-            println "original:"+original
-            for (int i = 0; i < targets.size(); i++) {
-                println "target:"+targets[i]
-                if (original == targets[i]) {
-                    println "target==original->"+ replacements[i]
-                    return replacements[i]
-                }
+    static String tr(String text, String source, String replacement) {
+        if (!text || !source) { return text }
+        source = expandTr(source)
+        replacement = expandTr(replacement)
+
+        // padding replacement with a last character, if necessary
+        replacement = replacement.padRight(source.size(), replacement[replacement.size()-1])
+
+        return text.collect { original ->
+            if (source.contains(original)) {
+                replacement[source.indexOf(original)]
+            } else {
+                original
             }
-            return original
-        }.join('')
+        }.join()
     }
+
+    private static String expandTr(String text) {
+        if (!text.contains('-')) { return text }
+        return text.replaceAll(/(\S)-(\S)/, { all, begin, end -> (begin..end).join() })
+    }
+
 }
