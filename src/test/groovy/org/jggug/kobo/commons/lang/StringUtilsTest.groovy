@@ -25,4 +25,21 @@ class StringUtilsTest extends GroovyTestCase {
         assert StringUtils.tr("abcdefghijklmn", "a-c", "A-N") == "ABCdefghijklmn"
     }
 
+    void tearDown() {
+        StringUtils.revertMetaClass()
+    }
+
+    void testExtendMetaClass() {
+        StringUtils.extendMetaClass()
+        assert "abcdefghijklmn".tr("abc", "ABC") == "ABCdefghijklmn"
+        assert "abcdefghijklmn".tr("a-n", "A-M") == "ABCDEFGHIJKLMM"
+    }
+
+    void testRevertMetaClass() {
+        try {
+            "abcdefghijklmn".tr("abc", "ABC")
+            fail()
+        } catch (MissingMethodException e) {
+        }
+    }
 }
