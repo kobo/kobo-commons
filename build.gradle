@@ -31,22 +31,7 @@ uploadArchives {
 }
 
 test.doLast {
-    showReport()
-    growlnotify("test", "done.")
-}
-
-def showReport() {
-    if (isSpecifiedFlag("showReport")) {
+    if (Boolean.valueOf(System.properties["showReport"])) {
         'open build/reports/tests/index.html'.execute()
     }
-}
-def growlnotify(task, message) {
-    if (System.env.GROWLNOTIFY_BIN) {
-        "${System.env.GROWLNOTIFY_BIN} -n Gradle -t gradle:$task -m $message".execute()
-    }
-}
-
-// helpers
-def isSpecifiedFlag(key) {
-    Boolean.valueOf(System.properties[key])
 }
