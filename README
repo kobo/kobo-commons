@@ -1,0 +1,111 @@
+What's this
+============
+
+It's a helper library for Groovy, containing a supplement of standard API,
+a proposal of new features and so on.
+
+Current features:
+
+@Equiv
+    If you annotate specified fields, you can dynamically generate the equals
+    method and the hashCode method.
+
+String.tr()
+    tranlation of each character in String
+
+Object.tap()
+    tap methods for iterator
+
+
+Requirements
+============
+
+To use you will need:
+
+    - Groovy: 1.7+ (http://groovy.codehaus.org/)
+
+To build you will need:
+
+    - JDK 6+ (http://java.sun.com/j2se/)
+    - Gradle 0.8+ (http://www.gradle.org/)
+
+
+Download
+============
+
+Download from the following:
+
+    - http://sourceforge.net/projects/kobo-dist/files/
+
+
+Install
+============
+
+Just add "kobo-commons-<VERSION>.jar" you downloaded to a classpath of your products.
+
+
+How to use
+============
+
+@Equiv
+--------------
+
+If you wrote the following groovy code:
+
+    static class Sample {
+        @Equiv
+        String name
+
+        @Equiv
+        String value
+
+        String ignored
+    }
+
+then you could use equals method and hashCode method:
+
+    def s1 = new Sample(name:'John', value:'Good', ignored:'Garbage')
+    def s2 = new Sample(name:'John', value:'Good', ignored:'Gold')
+    def s3 = new Sample(name:'John', value:'Bad',  ignored:'Garbage')
+    def s4 = new Sample(name:'Mike', value:'Good', ignored:'Garbage')
+    
+    assert s1 == s1
+    assert s1 == s2
+    assert s1 != s3
+    assert s1 != s4
+    
+    assert s1.hashCode() == s1.hashCode()
+    assert s1.hashCode() == s2.hashCode()
+    assert s1.hashCode() != s3.hashCode()
+    assert s1.hashCode() != s4.hashCode()
+
+
+String.tr()
+--------------
+
+TBD
+
+Object.tap()
+--------------
+
+TBD
+
+
+License
+============
+
+Apache License Version 2.0
+
+
+Building
+============
+
+To build everything, run tests and create a complete installation:
+
+    gradle test install
+
+To build without running tests:
+
+    gradle install
+
+
