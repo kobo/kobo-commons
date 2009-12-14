@@ -20,8 +20,7 @@ class ObjectUtils {
     static void extendMetaClass() {
         ExpandoMetaClass.enableGlobally()
         Object.metaClass.tap = { Closure closure->
-            closure.call(delegate)
-            delegate
+            return ObjectUtils.tap(delegate, closure)
         }
     }
 
@@ -30,4 +29,8 @@ class ObjectUtils {
         Object.metaClass = null
     }
 
+    static Object tap(Object object, Closure closure) {
+        closure.call(object)
+        object
+    }
 }
