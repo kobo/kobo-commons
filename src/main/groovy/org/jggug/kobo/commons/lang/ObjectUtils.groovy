@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jggug.kobo.commons.util;
+package org.jggug.kobo.commons.lang
 
-class DebugUtils {
+class ObjectUtils {
 
-    public static initialize() {
-        ExpandoMetaClass.enableGlobally();
+    static void extendMetaClass() {
+        ExpandoMetaClass.enableGlobally()
         Object.metaClass.tap = { Closure closure->
             closure.call(delegate)
             delegate
         }
+    }
+
+    static void revertMetaClass() {
+        println Object.metaClass
+        Object.metaClass = null
     }
 
 }

@@ -15,15 +15,14 @@
  */
 package org.jggug.kobo.commons.lang
 
-import org.jggug.kobo.commons.util.DebugUtils;
+class ObjectUtilsTest extends GroovyTestCase {
 
-class DebugUtilsTest extends GroovyTestCase {
-
-    void setUp() {
-        DebugUtils.initialize();
+    void tearDown() {
+        ObjectUtils.revertMetaClass()
     }
 
-    void testUpperLowerCase() throws Exception {
+    void testExtendMetaClass_String() {
+        ObjectUtils.extendMetaClass()
         assert "string" == "String".toUpperCase().tap{
             assert it == "STRING"
         }.toLowerCase().tap {
@@ -31,13 +30,26 @@ class DebugUtilsTest extends GroovyTestCase {
         }
     }
 
-    void testGrep() throws Exception {
-        def list = [1,2,3,4,5,6,7,8,9,10,11,12];
-        assert [12] == list.grep { it % 2 == 0 }.tap {
-            assert it == [2,4,6,8,10,12]
+    void testExtendMetaClass_List() {
+        ObjectUtils.extendMetaClass()
+        def list = (1..12) as List
+        assert [12, 99] == list.grep { it % 2 == 0 }.tap {
+            assert it == [2, 4, 6, 8, 10, 12]
         }.grep {it % 3 == 0}.tap {
-            assert it == [6,12]
-        }.grep {it == 12}
+            assert it == [6, 12]
+        }.grep {it == 12}.tap {
+            assert it == [12]
+        }.tap {
+            it << 99  // it's possible to modify an object in a closure of tap
+        }
+    }
+
+    void testRevertMetaClass() {
+        try {
+            "String".tap {}
+            fail()
+        } catch (MissingMethodException e) {
+        }
     }
 
 }
