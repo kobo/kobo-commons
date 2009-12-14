@@ -22,9 +22,9 @@ class ObjectUtilsTest extends GroovyTestCase {
     }
 
     void testTap_String() {
-        assert "STRING" == ObjectUtils.tap("String".toUpperCase(), {
+        assert "string" == ObjectUtils.tap("String".toUpperCase(), {
             assert it == "STRING"
-        })
+        }).toLowerCase()
     }
 
     void testTap_List() {

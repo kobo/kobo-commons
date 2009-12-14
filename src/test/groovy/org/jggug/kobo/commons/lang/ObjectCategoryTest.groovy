@@ -19,9 +19,9 @@ class ObjectCategoryTest extends GroovyTestCase {
 
     void testTap_String() {
         use (ObjectCategory) {
-            assert "STRING" == "String".toUpperCase().tap {
+            assert "string" == "String".toUpperCase().tap {
                 assert it == "STRING"
-            }
+            }.toLowerCase()
         }
     }
 
