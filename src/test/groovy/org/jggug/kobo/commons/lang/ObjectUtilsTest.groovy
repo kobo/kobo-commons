@@ -28,15 +28,14 @@ class ObjectUtilsTest extends GroovyTestCase {
     }
 
     void testTap_List() {
-        def list = (1..6) as List
-        assert [2, 4, 6] == ObjectUtils.tap(list.grep { it % 2 == 0 }, {
+        assert [2, 4, 6] == ObjectUtils.tap((1..6).grep { it % 2 == 0 }, {
             assert it == [2, 4, 6]
         })
     }
 
     void testExtendMetaClass_String() {
         ObjectUtils.extendMetaClass()
-        assert "string" == "String".toUpperCase().tap{
+        assert "string" == "String".toUpperCase().tap {
             assert it == "STRING"
         }.toLowerCase().tap {
             assert it == "string"
@@ -45,8 +44,7 @@ class ObjectUtilsTest extends GroovyTestCase {
 
     void testExtendMetaClass_List() {
         ObjectUtils.extendMetaClass()
-        def list = (1..12) as List
-        assert [12, 99] == list.grep { it % 2 == 0 }.tap {
+        assert [12, 99] == (1..12).grep { it % 2 == 0 }.tap {
             assert it == [2, 4, 6, 8, 10, 12]
         }.grep {it % 3 == 0}.tap {
             assert it == [6, 12]
