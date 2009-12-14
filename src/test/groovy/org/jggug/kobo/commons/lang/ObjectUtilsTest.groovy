@@ -21,6 +21,19 @@ class ObjectUtilsTest extends GroovyTestCase {
         ObjectUtils.revertMetaClass()
     }
 
+    void testTap_String() {
+        assert "STRING" == ObjectUtils.tap("String".toUpperCase(), {
+            assert it == "STRING"
+        })
+    }
+
+    void testTap_List() {
+        def list = (1..6) as List
+        assert [2, 4, 6] == ObjectUtils.tap(list.grep { it % 2 == 0 }, {
+            assert it == [2, 4, 6]
+        })
+    }
+
     void testExtendMetaClass_String() {
         ObjectUtils.extendMetaClass()
         assert "string" == "String".toUpperCase().tap{
