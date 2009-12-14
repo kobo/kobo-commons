@@ -18,7 +18,8 @@ package org.jggug.kobo.commons.lang
 class StringUtils {
 
     static void extendMetaClass() {
-        String.metaClass.tr = { source, replacement ->
+        ExpandoMetaClass.enableGlobally()
+        String.metaClass.tr = { String source, String replacement ->
             return StringUtils.tr(delegate, source, replacement)
         }
     }
