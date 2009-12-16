@@ -25,7 +25,6 @@ class ObjectUtils {
     }
 
     static void revertMetaClass() {
-        println Object.metaClass
         Object.metaClass = null
     }
 
