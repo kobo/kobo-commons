@@ -24,10 +24,6 @@ class ObjectUtils {
         }
     }
 
-    static void revertMetaClass() {
-        Object.metaClass = null
-    }
-
     static Object tap(Object object, Closure closure) {
         closure.call(object)
         object

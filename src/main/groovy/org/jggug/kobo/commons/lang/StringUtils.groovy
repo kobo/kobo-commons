@@ -24,10 +24,6 @@ class StringUtils {
         }
     }
 
-    static void revertMetaClass() {
-        String.metaClass = null
-    }
-
     static String tr(String text, String source, String replacement) {
         if (!text || !source) { return text }
         source = expandTr(source)

@@ -17,8 +17,8 @@ package org.jggug.kobo.commons.lang
 
 class ObjectUtilsTest extends GroovyTestCase {
 
-    void tearDown() {
-        ObjectUtils.revertMetaClass()
+    void setUp() {
+        ObjectUtils.extendMetaClass()
     }
 
     void testTap_String() {
@@ -34,7 +34,6 @@ class ObjectUtilsTest extends GroovyTestCase {
     }
 
     void testExtendMetaClass_String() {
-        ObjectUtils.extendMetaClass()
         assert "string" == "String".toUpperCase().tap {
             assert it == "STRING"
         }.toLowerCase().tap {
@@ -43,7 +42,6 @@ class ObjectUtilsTest extends GroovyTestCase {
     }
 
     void testExtendMetaClass_List() {
-        ObjectUtils.extendMetaClass()
         assert [12, 99] == (1..12).grep { it % 2 == 0 }.tap {
             assert it == [2, 4, 6, 8, 10, 12]
         }.grep {it % 3 == 0}.tap {
@@ -52,14 +50,6 @@ class ObjectUtilsTest extends GroovyTestCase {
             assert it == [12]
         }.tap {
             it << 99  // it's possible to modify an object in a closure of tap
-        }
-    }
-
-    void testRevertMetaClass() {
-        try {
-            "String".tap {}
-            fail()
-        } catch (MissingMethodException e) {
         }
     }
 
