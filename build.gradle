@@ -45,7 +45,9 @@ compileTestGroovy {
 
 uploadArchives {
     repositories.mavenDeployer {
-        repository url:"file://localhost/tmp/myRepo/"
+        // If you want to deploy it, set an entry which has a key of 'kobo.maven.dir' at System properties.
+        // ex) $HOME/.gradle/gradle.properties: systemProp.kobo.maven.dirs=$HOME/myrepos/maven2
+        repository url: System.properties['kobo.maven.dir']
     }
 }
 
