@@ -33,15 +33,11 @@ class CollectionUtils {
         }
     }
 
-    static Collection sort(self, Closure... closures) {
-        println "static Collection sort(self, Closure... closures)"
-        //return sort(self, closures as List)
-        Collections.sort(self, new OrderBy(closures as List))
-        return self
+    static Collection sort(def self, Closure... closures) {
+        return sort(self, closures as List)
     }
 
-    static Collection sort(self, List<Closure> closures) {
-        println "static Collection sort(self, List<Closure> closures))"
+    static Collection sort(def self, List<Closure> closures) {
         Collections.sort(self, new OrderBy(closures))
         return self
     }

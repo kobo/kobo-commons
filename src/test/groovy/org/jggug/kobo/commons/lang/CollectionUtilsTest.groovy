@@ -28,7 +28,6 @@ class CollectionUtilsTest extends GroovyTestCase {
         c2 = [key1:'c', key2:2]
         c3 = [key1:'c', key2:3]
         CollectionUtils.extendMetaClass()
-println "-"*30
     }
 
     void testSort_List_singleCondition() {
