@@ -14,17 +14,21 @@
  * limitations under the License.
  */
 
-usePlugin 'groovy'
-usePlugin 'maven'
+apply id:'groovy'
+apply id:'maven'
 
 repositories {
     mavenCentral()
-    //mavenRepo urls: "file://${System.properties['user.home']}/.m2/repository/"
+    mavenRepo urls: [
+        //"file://${System.properties['user.home']}/.m2/repository/",
+        //"http://snapshots.repository.codehaus.org/",
+        "http://repository.codehaus.org/",
+        "http://jansi.fusesource.org/repo/release", // which is needed by groovy 1.7.1??
+    ]
 }
 dependencies {
-    groovy group:'org.codehaus.groovy', name:'groovy', version:'1.7-beta-2'
-    //groovy group:'org.codehaus.groovy', name:'groovy', version:'1.8-beta-1-SNAPSHOT'
-    //groovy group:'junit', name:'junit', version:'4.7'
+    groovy group:'org.codehaus.groovy', name:'groovy', version:'1.7.1'
+    groovy group:'junit', name:'junit', version:'4.7'
 }
 
 def defaultEncoding = 'UTF-8'
