@@ -15,6 +15,10 @@
  */
 package org.jggug.kobo.commons.lang
 
+/**
+ * @author UEHARA Junji (uehaj)
+ * @author NAKANO Yasuharu (nobeans)
+ */
 class StringUtils {
 
     static void extendMetaClass() {
