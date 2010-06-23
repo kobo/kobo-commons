@@ -86,6 +86,14 @@ class CollectionUtilsTest extends GroovyTestCase {
         assert [aa1, aa2, b1, b2, c1, c2, c3] == CollectionUtils.sort(data, {it.key}, {it.value})
     }
 
+    void testSort_Util_Map_DescOrderBy_AscOrderBy() {
+        def data = [c3, aa1, b2, c1, b1, aa2, c2]
+        assert [c1, c2, c3, b1, b2, aa1, aa2] == CollectionUtils.sort(data, [OrderBy.desc{it.key}, OrderBy.asc{it.value}])
+        assert [c1, c2, c3, b1, b2, aa1, aa2] == CollectionUtils.sort(data, [OrderBy.desc{it.key}, {it.value}])
+        assert [c1, c2, c3, b1, b2, aa1, aa2] == CollectionUtils.sort(data, OrderBy.desc{it.key}, OrderBy.asc{it.value})
+        assert [c1, c2, c3, b1, b2, aa1, aa2] == CollectionUtils.sort(data, OrderBy.desc{it.key}, {it.value})
+    }
+
     // MOP ----------------------------------------------------
 
     void testSort_MOP_List_singleCondition() {
@@ -135,6 +143,11 @@ class CollectionUtilsTest extends GroovyTestCase {
         assert [aa1, aa2, b1, b2, c1, c2, c3] == data.sort({it.key}, {it.value}) // recommended
         assert [aa1, aa2, b1, b2, c1, c2, c3] == data.sort {it.key}, {it.value}
         assert [aa1, aa2, b1, b2, c1, c2, c3] == data.sort {it.key} {it.value}
+    }
+
+    void testSort_MOP_Map_DescOrderBy_AscOrderBy() {
+        assert [c1, c2, c3, b1, b2, aa1, aa2] == [c3, aa1, b2, c1, b1, aa2, c2].sort(OrderBy.desc{it.key}, OrderBy.asc{it.value})
+        assert [c1, c2, c3, b1, b2, aa1, aa2] == [c3, aa1, b2, c1, b1, aa2, c2].sort(OrderBy.desc{it.key}, {it.value})
     }
 
 }
