@@ -27,7 +27,7 @@ repositories {
     ]
 }
 dependencies {
-    groovy 'org.codehaus.groovy:groovy:1.7.2'
+    groovy 'org.codehaus.groovy:groovy:1.7.3'
     testCompile 'junit:junit:4.7'
 }
 
