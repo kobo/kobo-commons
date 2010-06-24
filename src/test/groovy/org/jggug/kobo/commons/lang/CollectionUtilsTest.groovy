@@ -72,12 +72,11 @@ class CollectionUtilsTest extends GroovyTestCase {
         assert CollectionUtils.sort(data.iterator(), [{it.key}, {it.value}]) in Iterator
     }
 
-    void testSort_Util_Map() {
+    void testSort_Util_Map() { // you can use only key. 'it' means key.
         def data = [d:2, e:1,  b:1, aa:2, c:2]
-        assert "[aa:2, b:1, c:2, d:2, e:1]" == CollectionUtils.sort(data, [{it.key}, {it.value}]).toString()
-        assert "[b:1, e:1, aa:2, c:2, d:2]" == CollectionUtils.sort(data, [{it.value}, {it.key}]).toString()
-        assert "[b:1, e:1, aa:2, c:2, d:2]" == CollectionUtils.sort(data, new OrderBy([{it.value}, {it.key}])).toString()
-        assert CollectionUtils.sort(data, [{it.key}, {it.value}]) in Map
+        assert "[aa:2, b:1, c:2, d:2, e:1]" == CollectionUtils.sort(data, [{it}, {data[it]}]).toString()
+        assert "[b:1, e:1, aa:2, c:2, d:2]" == CollectionUtils.sort(data, [{data[it]}, {it}]).toString()
+        assert CollectionUtils.sort(data, [{it}, {data[it]}]) in Map
     }
 
     void testSort_Util_aVarietyOfNotifications() {
@@ -130,11 +129,11 @@ class CollectionUtilsTest extends GroovyTestCase {
         assert data.iterator().sort([{it.key}, {it.value}]) in Iterator
     }
 
-    void testSort_MOP_Map() {
+    void testSort_MOP_Map() { // you can use only key. 'it' means key.
         def data = [d:2, e:1,  b:1, aa:2, c:2]
-        assert "[aa:2, b:1, c:2, d:2, e:1]" == data.sort([{it.key}, {it.value}]).toString()
-        assert "[b:1, e:1, aa:2, c:2, d:2]" == data.sort([{it.value}, {it.key}]).toString()
-        assert data.sort([{it.key}, {it.value}]) in Map
+        assert "[aa:2, b:1, c:2, d:2, e:1]" == data.sort([{it}, {data[it]}]).toString()
+        assert "[b:1, e:1, aa:2, c:2, d:2]" == data.sort([{data[it]}, {it}]).toString()
+        assert data.sort([{it}, {data[it]}]) in Map
     }
 
     void testSort_MOP_aVarietyOfNotifications() {

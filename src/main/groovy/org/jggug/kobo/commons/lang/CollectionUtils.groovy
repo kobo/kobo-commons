@@ -20,11 +20,6 @@ class CollectionUtils {
     static void extendMetaClass() {
         ExpandoMetaClass.enableGlobally()
         extend(List, Object[], Iterator, Map)
-
-        // because there isn't sort(Comparator) only for Map
-        Map.metaClass.sort << { Comparator comparator ->
-            return CollectionUtils.sort(delegate, comparator)
-        }
     }
 
     private static extend(Class... classes) {
@@ -39,20 +34,14 @@ class CollectionUtils {
     }
 
     static sort(def self, Closure... closures) {
+        println "sort(self, closures as List): ${self.class}: ${self}"
         return sort(self, closures as List)
     }
 
     static sort(def self, List<Closure> closures) {
+        println "self.sort(new OrderBy(closures): ${self.class}: ${self}"
         return self.sort(new OrderBy(closures))
     }
 
-    // why isn't there this method in org.codehaus.groovy.runtime.DefaultGroovyMethods ??
-    static Map sort(Map self, Comparator comparator) {
-        Map result = new LinkedHashMap()
-        self.entrySet().asList().sort(comparator).each { entry ->
-            result.put(entry.key, entry.value)
-        }
-        return result
-    }
 }
 
