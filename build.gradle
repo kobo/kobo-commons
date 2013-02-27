@@ -17,35 +17,22 @@
 apply plugin:'groovy'
 apply plugin:'maven'
 
+defaultTasks 'clean', 'test'
+
 repositories {
     mavenCentral()
-    mavenRepo urls: [
-        //"file://${System.properties['user.home']}/.m2/repository/",
-        //"http://snapshots.repository.codehaus.org/",
-        "http://repository.codehaus.org/",
-        "http://jansi.fusesource.org/repo/release", // which is needed by groovy 1.7.1??
-    ]
+    mavenRepo name: "codehaus", url: "http://repository.codehaus.org"
+    mavenRepo name: "codehaus-snapshots", url: "http://snapshots.repository.codehaus.org"
 }
+
 dependencies {
-    groovy 'org.codehaus.groovy:groovy:1.7.3'
+    compile 'org.codehaus.groovy:groovy:1.7.3'
     testCompile 'junit:junit:4.7'
 }
 
 def defaultEncoding = 'UTF-8'
-compileJava {
-    options.encoding = defaultEncoding
-}
-compileTestJava {
-    options.encoding = defaultEncoding
-}
-compileGroovy {
-    groovyOptions.encoding = defaultEncoding
-    options.encoding = defaultEncoding
-}
-compileTestGroovy {
-    groovyOptions.encoding = defaultEncoding
-    options.encoding = defaultEncoding
-}
+tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
+tasks.withType(GroovyCompile) each { it.groovyOptions.encoding = defaultEncoding }
 
 uploadArchives {
     repositories.mavenDeployer {
@@ -55,9 +42,7 @@ uploadArchives {
     }
 }
 
-test.doLast {
-    if (Boolean.valueOf(System.properties["showReport"])) {
-        'open build/reports/tests/index.html'.execute()
-    }
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.4'
 }
 
