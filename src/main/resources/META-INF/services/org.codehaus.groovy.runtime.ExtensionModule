@@ -1,0 +1,3 @@
+moduleName = KoboCommonsExtension
+moduleVersion = 0.3
+extensionClasses = org.jggug.kobo.commons.lang.CollectionUtils,org.jggug.kobo.commons.lang.ObjectUtils
