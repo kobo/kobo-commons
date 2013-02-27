@@ -26,8 +26,8 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy:1.7.3'
-    testCompile 'junit:junit:4.7'
+    compile 'org.codehaus.groovy:groovy-all:2.1.1'
+    testCompile 'junit:junit:4.11'
 }
 
 def defaultEncoding = 'UTF-8'
