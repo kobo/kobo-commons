@@ -1,3 +1,6 @@
 moduleName = KoboCommonsExtension
 moduleVersion = 0.3
-extensionClasses = org.jggug.kobo.commons.lang.CollectionUtils,org.jggug.kobo.commons.lang.ObjectUtils
+extensionClasses = \
+  org.jggug.kobo.commons.lang.CollectionUtils,\
+  org.jggug.kobo.commons.lang.ObjectUtils,\
+  org.jggug.kobo.commons.lang.DumpUtils
