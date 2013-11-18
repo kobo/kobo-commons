@@ -21,8 +21,10 @@ defaultTasks 'clean', 'test'
 
 repositories {
     mavenCentral()
-    mavenRepo name: "codehaus", url: "http://repository.codehaus.org"
-    mavenRepo name: "codehaus-snapshots", url: "http://snapshots.repository.codehaus.org"
+    maven {
+        url "http://repository.codehaus.org"
+        url "http://snapshots.repository.codehaus.org"
+    }
 }
 
 dependencies {
@@ -43,6 +45,6 @@ uploadArchives {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.4'
+    gradleVersion = '1.8'
 }
 
