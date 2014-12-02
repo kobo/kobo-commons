@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2013 the original author or authors.
+ * Copyright 2014 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,25 +14,10 @@
  * limitations under the License.
  */
 
-apply plugin:'groovy'
-
-defaultTasks 'clean', 'test'
-
-buildscript {
-    apply from: file('gradle/buildscript.gradle'), to: buildscript
-}
-apply from: file('gradle/bintray.gradle')
-
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.3.8'
-    testCompile 'junit:junit:4.11'
+    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:0.6"
 }
-
-def defaultEncoding = 'UTF-8'
-tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
-tasks.withType(GroovyCompile) each { it.groovyOptions.encoding = defaultEncoding }
-
