@@ -140,7 +140,6 @@ class CollectionUtilsTest extends GroovyTestCase {
         def data = [c3, aa1, b2, c1, b1, aa2, c2]
         assert [aa1, aa2, b1, b2, c1, c2, c3] == data.sort([{it.key}, {it.value}])
         assert [aa1, aa2, b1, b2, c1, c2, c3] == data.sort({it.key}, {it.value}) // recommended
-        assert [aa1, aa2, b1, b2, c1, c2, c3] == data.sort {it.key}, {it.value}
         assert [aa1, aa2, b1, b2, c1, c2, c3] == data.sort {it.key} {it.value}
     }
 

@@ -29,7 +29,7 @@ configurations {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.1.9'
+    compile 'org.codehaus.groovy:groovy-all:2.3.8'
     testCompile 'junit:junit:4.11'
     deployerJars 'org.apache.maven.wagon:wagon-webdav-jackrabbit:2.2'
 }

@@ -33,15 +33,20 @@ class CollectionUtils {
         }
     }
 
-    static sort(def self, Closure... closures) {
-        println "sort(self, closures as List): ${self.class}: ${self}"
-        return sort(self, closures as List)
+    static sort(Object self, Closure... closures) {
+        //println "Object#sort(self, closures as Array): ${self.class}: ${self}"
+        return CollectionUtils.sort(self, closures.toList())
     }
 
-    static sort(def self, List<Closure> closures) {
-        println "self.sort(new OrderBy(closures): ${self.class}: ${self}"
-        return self.sort(new OrderBy(closures))
+    static sort(Object self, List<Closure> closures) {
+        //println "Object#sort(closures as List): ${self.class}: ${self}"
+        if (self instanceof Map) {
+            return self.sort(new OrderBy(closures))
+        }
+        if (self instanceof Iterator) {
+            return self.sort(new OrderBy(closures))
+        }
+        return self.sort(false, new OrderBy(closures))
     }
-
 }
 
